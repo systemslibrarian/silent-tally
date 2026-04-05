@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>silent-tally — Shamir MPC Clinical Trial Demo</title>
+  <meta name="description" content="Secure MPC in the browser — five hospitals compute combined clinical trial enrollment without revealing individual counts." />
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-gray-800 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-white">silent-tally</h1>
+        <p class="text-sm text-gray-400">Shamir-Based MPC · Clinical Trial Demo</p>
+      </div>
+      <div id="progress" class="text-sm text-gray-500 font-mono"></div>
+    </div>
+  </header>
+
+  <!-- Main exhibit area -->
+  <main class="flex-1 px-6 py-8">
+    <div id="exhibit-container" class="max-w-5xl mx-auto"></div>
+  </main>
+
+  <!-- Navigation -->
+  <footer class="border-t border-gray-800 px-6 py-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <button id="btn-prev"
+        class="px-5 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium">
+        ← Previous
+      </button>
+      <button id="btn-next"
+        class="px-5 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium">
+        Next →
+      </button>
+    </div>
+  </footer>
+
+  <!-- Loading overlay -->
+  <div id="loading-overlay" class="fixed inset-0 bg-gray-950 flex items-center justify-center z-50">
+    <div class="text-center">
+      <div class="inline-block w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+      <p class="text-gray-400 text-sm">Initializing cryptographic core…</p>
+    </div>
+  </div>
+
+  <script type="module" src="/src-ts/main.ts"></script>
+</body>
+</html>

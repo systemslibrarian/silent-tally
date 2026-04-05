@@ -1,0 +1,19 @@
+[package]
+name = "silent-tally"
+version = "0.1.0"
+edition = "2021"
+description = "Shamir Secret Sharing over GF(2^61-1) for secure multi-party computation"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+getrandom = { version = "0.3", features = ["wasm_js"] }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3"
+
+[profile.release]
+opt-level = "z"
+lto = true
