@@ -36,7 +36,7 @@ function canAdvance(): boolean {
   }
 }
 
-function render(): void {
+function render(focusExhibit = false): void {
   progressEl.textContent = `Exhibit ${state.currentExhibit} of 6`;
   btnPrev.disabled = state.currentExhibit === 1;
   btnNext.disabled = state.currentExhibit === 6 || !canAdvance();
@@ -46,7 +46,7 @@ function render(): void {
       renderExhibit1(exhibitContainer, state);
       break;
     case 2:
-      renderExhibit2(exhibitContainer, state, render);
+      renderExhibit2(exhibitContainer, state, () => render(false));
       break;
     case 3:
       computeShares(state);
@@ -60,22 +60,39 @@ function render(): void {
       renderExhibit5(exhibitContainer, state);
       break;
     case 6:
-      renderExhibit6(exhibitContainer, state, render);
+      renderExhibit6(exhibitContainer, state, () => render(false));
       break;
+  }
+
+  if (focusExhibit) {
+    exhibitContainer.focus();
+    exhibitContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
 btnPrev.addEventListener('click', () => {
   if (state.currentExhibit > 1) {
     state.currentExhibit--;
-    render();
+    render(true);
   }
 });
 
 btnNext.addEventListener('click', () => {
   if (state.currentExhibit < 6 && canAdvance()) {
     state.currentExhibit++;
-    render();
+    render(true);
+  }
+});
+
+// Keyboard navigation: left/right arrows
+document.addEventListener('keydown', (e) => {
+  if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+  if (e.key === 'ArrowLeft' && state.currentExhibit > 1) {
+    state.currentExhibit--;
+    render(true);
+  } else if (e.key === 'ArrowRight' && state.currentExhibit < 6 && canAdvance()) {
+    state.currentExhibit++;
+    render(true);
   }
 });
 
@@ -83,7 +100,8 @@ async function main(): Promise<void> {
   try {
     await initWasm();
     loadingOverlay.style.display = 'none';
-    render();
+    loadingOverlay.setAttribute('aria-hidden', 'true');
+    render(false);
   } catch (err) {
     loadingOverlay.innerHTML = `
       <div class="text-center">

@@ -14,9 +14,9 @@ export function renderExhibit2(container: HTMLElement, state: AppState, onStateC
         another's value. All five must be locked before proceeding.
       </p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="hospital-inputs">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="hospital-inputs" role="list" aria-label="Hospital enrollment inputs">
         ${state.hospitals.map(h => `
-          <div class="bg-gray-900 rounded-xl border ${h.locked ? 'border-emerald-800' : 'border-gray-700'} overflow-hidden" id="card-${h.id}">
+          <div class="bg-gray-900 rounded-xl border ${h.locked ? 'border-emerald-800' : 'border-gray-700'} overflow-hidden" id="card-${h.id}" role="listitem">
             <div class="px-4 py-3 border-b ${h.locked ? 'border-emerald-900 bg-emerald-950/20' : 'border-gray-800 bg-gray-900'}">
               <div class="flex items-center gap-2">
                 <span class="text-xs font-mono ${h.locked ? 'text-emerald-500' : 'text-gray-500'}">
@@ -26,7 +26,7 @@ export function renderExhibit2(container: HTMLElement, state: AppState, onStateC
               <div class="text-sm font-medium text-white mt-1">${h.name}</div>
             </div>
             <div class="p-4 bg-gray-950">
-              <label class="block text-xs text-gray-500 mb-1.5 font-mono">enrollment_count &gt;</label>
+              <label for="input-${h.id}" class="block text-xs text-gray-500 mb-1.5 font-mono">enrollment_count &gt;</label>
               <div class="flex items-center gap-2">
                 <input
                   type="number"
@@ -34,20 +34,24 @@ export function renderExhibit2(container: HTMLElement, state: AppState, onStateC
                   max="9999"
                   value="${h.count}"
                   ${h.locked ? 'disabled' : ''}
-                  class="w-full bg-gray-900 border ${h.locked ? 'border-emerald-800 text-emerald-400' : 'border-gray-700 text-amber-300'} rounded px-3 py-2 font-mono text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  aria-label="Enrollment count for ${h.name}"
+                  aria-describedby="error-${h.id}"
+                  class="w-full bg-gray-900 border ${h.locked ? 'border-emerald-800 text-emerald-400' : 'border-gray-700 text-amber-300'} rounded px-3 py-2 font-mono text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 focus:ring-offset-gray-950 disabled:opacity-60 disabled:cursor-not-allowed [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   data-hospital-id="${h.id}"
                   id="input-${h.id}"
                 />
               </div>
-              <div class="mt-2 text-xs text-red-400 hidden" id="error-${h.id}"></div>
+              <div class="mt-2 text-xs text-red-400 hidden" id="error-${h.id}" role="alert" aria-live="assertive"></div>
               <button
-                class="mt-3 w-full py-2 rounded text-sm font-medium transition-colors
+                class="mt-3 w-full py-2.5 rounded text-sm font-medium transition-colors min-h-[44px]
+                  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 focus:ring-offset-gray-950
                   ${h.locked
                     ? 'bg-emerald-900/30 text-emerald-400 cursor-not-allowed'
                     : 'bg-indigo-600 hover:bg-indigo-500 text-white cursor-pointer'}"
                 data-lock-id="${h.id}"
                 ${h.locked ? 'disabled' : ''}
                 id="lock-${h.id}"
+                aria-label="${h.locked ? h.name + ' enrollment locked' : 'Lock in enrollment for ' + h.name}"
               >
                 ${h.locked ? '✓ Locked In' : 'Lock In'}
               </button>

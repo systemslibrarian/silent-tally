@@ -114,9 +114,9 @@ export function renderExhibit5(container: HTMLElement, state: AppState): void {
       </div>
 
       <!-- Total reveal -->
-      <div class="bg-gray-900 rounded-xl p-6 border-2 border-emerald-600 text-center space-y-3" id="total-reveal">
+      <div class="bg-gray-900 rounded-xl p-6 border-2 border-emerald-600 text-center space-y-3" id="total-reveal" role="status" aria-live="polite" aria-label="Reconstructed total enrollment">
         <div class="text-xs text-emerald-500 font-mono uppercase tracking-wider">Total Enrollment Across All Sites</div>
-        <div class="text-5xl font-bold text-emerald-400 font-mono">${expectedTotal.toLocaleString()}</div>
+        <div class="text-4xl sm:text-5xl font-bold text-emerald-400 font-mono">${expectedTotal.toLocaleString()}</div>
         <div class="text-sm text-gray-400">
           Reconstructed via Lagrange interpolation over GF(2⁶¹ − 1)
         </div>
@@ -125,7 +125,7 @@ export function renderExhibit5(container: HTMLElement, state: AppState): void {
       <!-- Cross-check -->
       <div class="bg-gray-900 rounded-xl p-5 border border-gray-800">
         <h3 class="text-sm font-semibold text-gray-300 mb-3">Cross-check verification</h3>
-        <div class="font-mono text-xs space-y-1">
+        <div class="font-mono text-xs space-y-1 overflow-x-auto">
           <p class="text-gray-400">
             Direct sum: ${state.hospitals.map(h => h.count.toLocaleString()).join(' + ')} =
             <span class="text-amber-400">${expectedTotal.toLocaleString()}</span>

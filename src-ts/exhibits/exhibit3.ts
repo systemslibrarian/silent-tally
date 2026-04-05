@@ -47,11 +47,11 @@ export function renderExhibit3(container: HTMLElement, state: AppState): void {
             + ${formatBigint(data.coefficients[1])}·x²
             <span class="text-gray-600">(mod p)</span>
           </div>
-          <div class="grid grid-cols-5 gap-2">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2" role="list" aria-label="Shares for Hospital ${h.id}">
             ${data.shares.map((s, i) => `
-              <div class="bg-gray-950 rounded p-2 text-center">
+              <div class="bg-gray-950 rounded p-2 text-center" role="listitem">
                 <div class="text-[10px] text-gray-500 font-mono">f(${i + 1})</div>
-                <div class="text-xs text-emerald-400 font-mono break-all">${formatBigint(s)}</div>
+                <div class="text-xs text-emerald-400 font-mono break-all" aria-label="Share f(${i + 1}) value">${formatBigint(s)}</div>
               </div>
             `).join('')}
           </div>
@@ -88,7 +88,7 @@ export function renderExhibit3(container: HTMLElement, state: AppState): void {
       <!-- Curve visualization for Hospital 1 -->
       <div class="bg-gray-900 rounded-xl p-5 border border-gray-800">
         <h3 class="text-sm font-semibold text-gray-300 mb-3">Polynomial curve — ${state.hospitals[0].name}</h3>
-        <svg viewBox="0 0 400 200" class="w-full max-w-lg mx-auto">
+        <svg viewBox="0 0 400 200" class="w-full max-w-lg mx-auto" role="img" aria-label="Polynomial curve showing 5 share points plotted on a degree-2 polynomial, with the secret f(0) occluded">
           <!-- Grid -->
           <line x1="50" y1="170" x2="380" y2="170" stroke="#374151" stroke-width="1"/>
           <line x1="50" y1="170" x2="50" y2="20" stroke="#374151" stroke-width="1"/>

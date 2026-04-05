@@ -48,18 +48,21 @@ export function renderExhibit6(container: HTMLElement, state: AppState, onStateC
       </div>
 
       <!-- Hospital selection -->
-      <div class="grid grid-cols-1 sm:grid-cols-5 gap-3" id="coalition-cards">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" id="coalition-cards" role="group" aria-label="Select hospitals for coalition">
         ${state.hospitals.map(h => {
           const selected = coalition.has(h.id);
           return `
             <button
-              class="rounded-xl p-4 border-2 text-center transition-all cursor-pointer
+              class="rounded-xl p-4 border-2 text-center transition-all cursor-pointer min-h-[44px]
+                focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-950
                 ${selected
                   ? 'bg-red-950/30 border-red-600 ring-1 ring-red-500/30'
                   : 'bg-gray-900 border-gray-700 hover:border-gray-500'}"
               data-coalition-id="${h.id}"
+              aria-pressed="${selected}"
+              aria-label="${h.name}${selected ? ' — in coalition' : ''}"
             >
-              <div class="text-2xl mb-1">${selected ? '🕵️' : '🏥'}</div>
+              <div class="text-2xl mb-1" aria-hidden="true">${selected ? '🕵️' : '🏥'}</div>
               <div class="text-xs font-medium ${selected ? 'text-red-300' : 'text-white'}">${h.name.split(' ')[0]}</div>
               <div class="text-[10px] mt-1 ${selected ? 'text-red-400' : 'text-gray-500'}">
                 ${selected ? 'In coalition' : 'Click to add'}
@@ -120,7 +123,7 @@ export function renderExhibit6(container: HTMLElement, state: AppState, onStateC
               <h4 class="text-xs font-semibold text-gray-400 mb-3">
                 Multiple valid polynomials through the 2 known points
               </h4>
-              <svg viewBox="0 0 400 200" class="w-full max-w-lg mx-auto">
+              <svg viewBox="0 0 400 200" class="w-full max-w-lg mx-auto" role="img" aria-label="Multiple polynomial curves passing through 2 known share points, each implying a different secret — demonstrating that the system is underdetermined">
                 <!-- Grid -->
                 <line x1="50" y1="170" x2="380" y2="170" stroke="#374151" stroke-width="1"/>
                 <line x1="50" y1="170" x2="50" y2="20" stroke="#374151" stroke-width="1"/>

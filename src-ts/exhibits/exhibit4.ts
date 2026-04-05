@@ -38,7 +38,7 @@ export function renderExhibit4(container: HTMLElement, state: AppState): void {
       <!-- Distribution diagram -->
       <div class="bg-gray-900 rounded-xl p-5 border border-gray-800">
         <h3 class="text-sm font-semibold text-gray-300 mb-4">Share flow diagram</h3>
-        <svg viewBox="0 0 500 280" class="w-full max-w-xl mx-auto">
+        <svg viewBox="0 0 500 280" class="w-full max-w-xl mx-auto" role="img" aria-label="Diagram showing five hospitals exchanging shares in a peer-to-peer ring topology">
           ${hospitals.map((h, i) => {
             const angle = (i / 5) * 2 * Math.PI - Math.PI / 2;
             const cx = 250 + 110 * Math.cos(angle);
@@ -69,19 +69,19 @@ export function renderExhibit4(container: HTMLElement, state: AppState): void {
       </div>
 
       <!-- 5×5 Share Matrix -->
-      <div class="bg-gray-900 rounded-xl p-5 border border-gray-800 overflow-x-auto">
-        <h3 class="text-sm font-semibold text-gray-300 mb-4">5 × 5 Share Matrix</h3>
-        <table class="w-full text-xs font-mono">
+      <div class="bg-gray-900 rounded-xl p-3 sm:p-5 border border-gray-800 overflow-x-auto -mx-4 sm:mx-0 rounded-none sm:rounded-xl">
+        <h3 class="text-sm font-semibold text-gray-300 mb-4 px-1" id="matrix-heading">5 × 5 Share Matrix</h3>
+        <table class="w-full text-xs font-mono min-w-[500px]" aria-labelledby="matrix-heading">
           <thead>
             <tr>
-              <th class="text-left text-gray-500 p-2 border-b border-gray-800">Sender ↓ · Receiver →</th>
-              ${hospitals.map(h => `<th class="text-center text-gray-400 p-2 border-b border-gray-800">H${h.id}</th>`).join('')}
+              <th scope="col" class="text-left text-gray-500 p-2 border-b border-gray-800">Sender ↓ · Receiver →</th>
+              ${hospitals.map(h => `<th scope="col" class="text-center text-gray-400 p-2 border-b border-gray-800">H${h.id}</th>`).join('')}
             </tr>
           </thead>
           <tbody>
             ${matrixRows.map((row, i) => `
               <tr>
-                <td class="text-gray-400 p-2 border-b border-gray-800/50">H${i + 1} — ${hospitals[i].name.split(' ')[0]}</td>
+              <td class="text-gray-400 p-2 border-b border-gray-800/50 whitespace-nowrap" scope="row">H${i + 1} — ${hospitals[i].name.split(' ')[0]}</td>
                 ${row.map(cell => `
                   <td class="text-center p-2 border-b border-gray-800/50 ${cell.isSelf ? 'bg-indigo-950/30 text-indigo-400' : 'text-emerald-400'}">
                     ${formatBigint(cell.value)}

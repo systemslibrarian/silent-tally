@@ -27,13 +27,13 @@ export function renderExhibit1(container: HTMLElement, _state: AppState): void {
       </div>
 
       <!-- Hospital cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" role="list" aria-label="Participating hospitals">
         ${_state.hospitals.map(h => `
-          <div class="bg-gray-900 rounded-lg p-4 border border-gray-700 text-center">
-            <div class="text-2xl mb-2">🏥</div>
+          <div class="bg-gray-900 rounded-lg p-4 border border-gray-700 text-center" role="listitem">
+            <div class="text-2xl mb-2" aria-hidden="true">🏥</div>
             <div class="text-sm font-medium text-white leading-tight">${h.name}</div>
             <div class="mt-2 flex items-center justify-center gap-1 text-gray-500 text-xs">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
@@ -49,7 +49,7 @@ export function renderExhibit1(container: HTMLElement, _state: AppState): void {
         <div class="bg-gray-900 rounded-xl p-6 border border-red-900/40 relative">
           <div class="absolute top-3 right-3 text-red-500 text-xs font-bold uppercase tracking-wider">✗ Fails</div>
           <h3 class="text-sm font-semibold text-red-400 mb-4">Naive: Central Server</h3>
-          <svg viewBox="0 0 300 200" class="w-full max-w-xs mx-auto opacity-50">
+          <svg viewBox="0 0 300 200" class="w-full max-w-xs mx-auto opacity-50" role="img" aria-label="Diagram showing five hospitals sending data to a central server, crossed out as insecure">
             <!-- Hospital nodes -->
             <circle cx="60" cy="40" r="16" fill="#374151" stroke="#6b7280" stroke-width="1.5"/>
             <circle cx="240" cy="40" r="16" fill="#374151" stroke="#6b7280" stroke-width="1.5"/>
@@ -75,7 +75,7 @@ export function renderExhibit1(container: HTMLElement, _state: AppState): void {
         <div class="bg-gray-900 rounded-xl p-6 border border-emerald-900/40 relative">
           <div class="absolute top-3 right-3 text-emerald-500 text-xs font-bold uppercase tracking-wider">✓ Secure</div>
           <h3 class="text-sm font-semibold text-emerald-400 mb-4">MPC: Shamir Secret Sharing</h3>
-          <svg viewBox="0 0 300 200" class="w-full max-w-xs mx-auto">
+          <svg viewBox="0 0 300 200" class="w-full max-w-xs mx-auto" role="img" aria-label="Diagram showing five hospitals connected peer-to-peer via MPC, computing only the total sum">
             <!-- Hospital nodes in a ring -->
             <circle cx="150" cy="30" r="16" fill="#374151" stroke="#6ee7b7" stroke-width="1.5"/>
             <circle cx="264" cy="80" r="16" fill="#374151" stroke="#6ee7b7" stroke-width="1.5"/>

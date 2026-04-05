@@ -8,40 +8,45 @@
 </head>
 <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col">
 
+  <!-- Skip navigation -->
+  <a href="#exhibit-container" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[60] focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:outline-none">
+    Skip to main content
+  </a>
+
   <!-- Header -->
-  <header class="border-b border-gray-800 px-6 py-4">
+  <header class="border-b border-gray-800 px-4 sm:px-6 py-4" role="banner">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div>
         <h1 class="text-xl font-bold tracking-tight text-white">silent-tally</h1>
         <p class="text-sm text-gray-400">Shamir-Based MPC · Clinical Trial Demo</p>
       </div>
-      <div id="progress" class="text-sm text-gray-500 font-mono"></div>
+      <div id="progress" class="text-sm text-gray-500 font-mono" aria-live="polite" aria-atomic="true"></div>
     </div>
   </header>
 
   <!-- Main exhibit area -->
-  <main class="flex-1 px-6 py-8">
-    <div id="exhibit-container" class="max-w-5xl mx-auto"></div>
+  <main class="flex-1 px-4 sm:px-6 py-6 sm:py-8" role="main" id="main-content">
+    <div id="exhibit-container" class="max-w-5xl mx-auto" tabindex="-1" aria-live="polite" aria-atomic="true"></div>
   </main>
 
   <!-- Navigation -->
-  <footer class="border-t border-gray-800 px-6 py-4">
+  <nav class="border-t border-gray-800 px-4 sm:px-6 py-4" role="navigation" aria-label="Exhibit navigation">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <button id="btn-prev"
-        class="px-5 py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium">
+      <button id="btn-prev" aria-label="Previous exhibit"
+        class="px-5 py-3 sm:py-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-950 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium min-h-[44px]">
         ← Previous
       </button>
-      <button id="btn-next"
-        class="px-5 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium">
+      <button id="btn-next" aria-label="Next exhibit"
+        class="px-5 py-3 sm:py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-950 disabled:opacity-30 disabled:cursor-not-allowed transition-colors font-medium min-h-[44px]">
         Next →
       </button>
     </div>
-  </footer>
+  </nav>
 
   <!-- Loading overlay -->
-  <div id="loading-overlay" class="fixed inset-0 bg-gray-950 flex items-center justify-center z-50">
+  <div id="loading-overlay" class="fixed inset-0 bg-gray-950 flex items-center justify-center z-50" role="status" aria-live="assertive" aria-label="Loading">
     <div class="text-center">
-      <div class="inline-block w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+      <div class="inline-block w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4" aria-hidden="true"></div>
       <p class="text-gray-400 text-sm">Initializing cryptographic core…</p>
     </div>
   </div>
