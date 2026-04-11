@@ -70,3 +70,124 @@ html[data-theme='light'] .theme-toggle {
 html[data-theme='light'] .theme-toggle:hover {
 	background: var(--color-gray-300);
 }
+
+/* ---- Light-mode utility overrides ---- */
+
+/* Surfaces */
+html[data-theme='light'] .bg-gray-900 {
+	background-color: var(--color-white);
+}
+html[data-theme='light'] .bg-gray-950 {
+	background-color: var(--color-gray-50);
+}
+
+/* Text */
+html[data-theme='light'] .text-white {
+	color: var(--color-gray-900);
+}
+html[data-theme='light'] .text-gray-100 {
+	color: var(--color-gray-900);
+}
+html[data-theme='light'] .text-gray-300 {
+	color: var(--color-gray-700);
+}
+html[data-theme='light'] .text-gray-400 {
+	color: var(--color-gray-600);
+}
+html[data-theme='light'] .text-gray-500 {
+	color: var(--color-gray-500);
+}
+html[data-theme='light'] .text-gray-600 {
+	color: var(--color-gray-500);
+}
+
+/* Borders */
+html[data-theme='light'] .border-gray-700 {
+	border-color: var(--color-gray-300);
+}
+html[data-theme='light'] .border-gray-800 {
+	border-color: var(--color-gray-200);
+}
+html[data-theme='light'] .border-gray-800\/50 {
+	border-color: color-mix(in srgb, var(--color-gray-200) 50%, transparent);
+}
+
+/* Accent tinted backgrounds */
+html[data-theme='light'] .bg-indigo-950\/30 {
+	background-color: var(--color-indigo-50);
+}
+html[data-theme='light'] .bg-emerald-950\/20 {
+	background-color: var(--color-emerald-50);
+}
+html[data-theme='light'] .bg-red-950\/20 {
+	background-color: var(--color-red-50);
+}
+
+/* Accent borders */
+html[data-theme='light'] .border-indigo-900\/40 {
+	border-color: var(--color-indigo-200);
+}
+html[data-theme='light'] .border-emerald-800 {
+	border-color: var(--color-emerald-300);
+}
+html[data-theme='light'] .border-emerald-900 {
+	border-color: var(--color-emerald-200);
+}
+html[data-theme='light'] .border-red-900\/30 {
+	border-color: var(--color-red-200);
+}
+html[data-theme='light'] .border-red-900\/40 {
+	border-color: var(--color-red-200);
+}
+html[data-theme='light'] .border-red-600 {
+	border-color: var(--color-red-400);
+}
+html[data-theme='light'] .border-emerald-600 {
+	border-color: var(--color-emerald-400);
+}
+
+/* Navigation buttons */
+html[data-theme='light'] #btn-prev {
+	background-color: var(--color-gray-200);
+	color: var(--color-gray-800);
+}
+html[data-theme='light'] #btn-prev:hover {
+	background-color: var(--color-gray-300);
+}
+
+/* Focus ring offset */
+html[data-theme='light'] .focus\:ring-offset-gray-950:focus {
+	--tw-ring-offset-color: var(--color-gray-100);
+}
+
+/* Accent text — darken slightly for light backgrounds */
+html[data-theme='light'] .text-indigo-400 {
+	color: var(--color-indigo-600);
+}
+html[data-theme='light'] .text-indigo-300 {
+	color: var(--color-indigo-600);
+}
+html[data-theme='light'] .text-indigo-200 {
+	color: var(--color-indigo-700);
+}
+html[data-theme='light'] .text-emerald-400 {
+	color: var(--color-emerald-600);
+}
+html[data-theme='light'] .text-emerald-500 {
+	color: var(--color-emerald-700);
+}
+html[data-theme='light'] .text-red-300 {
+	color: var(--color-red-600);
+}
+html[data-theme='light'] .text-red-400 {
+	color: var(--color-red-600);
+}
+html[data-theme='light'] .text-red-500 {
+	color: var(--color-red-700);
+}
+html[data-theme='light'] .text-amber-300 {
+	color: var(--color-amber-600);
+}
+html[data-theme='light'] .text-amber-400 {
+	color: var(--color-amber-600);
+}
