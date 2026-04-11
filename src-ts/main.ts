@@ -23,6 +23,14 @@ const progressEl = document.getElementById('progress')!;
 const btnPrev = document.getElementById('btn-prev') as HTMLButtonElement;
 const btnNext = document.getElementById('btn-next') as HTMLButtonElement;
 const loadingOverlay = document.getElementById('loading-overlay')!;
+const themeToggle = document.getElementById('theme-toggle') as HTMLButtonElement;
+
+function applyTheme(theme: 'dark' | 'light'): void {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+  themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
 
 function canAdvance(): boolean {
   switch (state.currentExhibit) {
@@ -96,8 +104,15 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+themeToggle.addEventListener('click', () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+});
+
 async function main(): Promise<void> {
   try {
+    const initialTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    applyTheme(initialTheme);
     await initWasm();
     loadingOverlay.style.display = 'none';
     loadingOverlay.setAttribute('aria-hidden', 'true');

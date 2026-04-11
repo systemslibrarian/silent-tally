@@ -1,1 +1,72 @@
 @import 'tailwindcss';
+
+body {
+	background-color: var(--color-gray-950);
+	color: var(--color-gray-100);
+}
+
+header,
+nav {
+	border-color: var(--color-gray-800);
+}
+
+#progress,
+#loading-overlay p {
+	color: var(--color-gray-400);
+}
+
+#loading-overlay {
+	background-color: var(--color-gray-950);
+}
+
+.theme-toggle {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	border-radius: 9999px;
+	border: 1px solid var(--color-gray-800);
+	background: var(--color-gray-800);
+	color: var(--color-gray-200);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.15rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color 180ms ease, color 180ms ease;
+}
+
+.theme-toggle:hover {
+	background: var(--color-gray-700);
+}
+
+html[data-theme='light'] body {
+	background-color: var(--color-gray-100);
+	color: var(--color-gray-900);
+}
+
+html[data-theme='light'] header,
+html[data-theme='light'] nav {
+	border-color: var(--color-gray-300);
+}
+
+html[data-theme='light'] #progress,
+html[data-theme='light'] #loading-overlay p {
+	color: var(--color-gray-600);
+}
+
+html[data-theme='light'] #loading-overlay {
+	background-color: var(--color-gray-100);
+}
+
+html[data-theme='light'] .theme-toggle {
+	border-color: var(--color-gray-300);
+	background: var(--color-gray-200);
+	color: var(--color-gray-800);
+}
+
+html[data-theme='light'] .theme-toggle:hover {
+	background: var(--color-gray-300);
+}

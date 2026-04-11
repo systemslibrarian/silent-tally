@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      document.documentElement.setAttribute('data-theme', saved ?? 'dark');
+    })();
+  </script>
   <title>silent-tally — Shamir MPC Clinical Trial Demo</title>
   <meta name="description" content="Secure MPC in the browser — five hospitals compute combined clinical trial enrollment without revealing individual counts." />
 </head>
@@ -14,7 +20,7 @@
   </a>
 
   <!-- Header -->
-  <header class="border-b border-gray-800 px-4 sm:px-6 py-4" role="banner">
+  <header class="relative border-b border-gray-800 px-4 sm:px-6 py-4" role="banner">
     <div class="max-w-5xl mx-auto flex items-center justify-between">
       <div>
         <h1 class="text-xl font-bold tracking-tight text-white">silent-tally</h1>
@@ -22,6 +28,7 @@
       </div>
       <div id="progress" class="text-sm text-gray-500 font-mono" aria-live="polite" aria-atomic="true"></div>
     </div>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode">🌙</button>
   </header>
 
   <!-- Main exhibit area -->
@@ -50,6 +57,10 @@
       <p class="text-gray-400 text-sm">Initializing cryptographic core…</p>
     </div>
   </div>
+
+  <footer style="text-align:center; padding: 1.5rem; font-size: 0.85rem; opacity: 0.7; margin-top: 2rem;">
+    Whether you eat or drink or whatever you do, do it all for the glory of God. — 1 Corinthians 10:31
+  </footer>
 
   <script type="module" src="/src-ts/main.ts"></script>
 </body>
